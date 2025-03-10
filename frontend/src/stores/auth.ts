@@ -11,7 +11,7 @@ export const useAuthStore = defineStore("auth", {
     isAuthenticated: (state) => !!state.token,
   },
   actions: {
-    // Call the djoser JWT endpoint (/auth/jwt/create/) in your login form,
+    // Call the djoser JWT endpoint (/api/v1/jwt/create/) in your login form,
     // then use this action to store the token.
     login(token: string) {
       this.token = token;
