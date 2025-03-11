@@ -1,7 +1,7 @@
 ﻿from rest_framework import serializers
 from djoser.serializers import UserCreateSerializer
 from django.contrib.auth import get_user_model
-from sim.models import Post
+from todoapp.models import Post
 
 
 class UserCreateSerializer(UserCreateSerializer):

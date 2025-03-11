@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class SimConfig(AppConfig):
+class ToDoAppConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'sim'
+    name = 'todoapp'

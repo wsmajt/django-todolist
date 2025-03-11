@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
 from core.serializers import PostSerializer
-from sim.models import Post
+from todoapp.models import Post
 
 class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer

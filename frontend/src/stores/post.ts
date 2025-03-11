@@ -1,5 +1,4 @@
-﻿// frontend/src/stores/post.ts
-import { defineStore } from "pinia";
+﻿import { defineStore } from "pinia";
 import axios from "axios";
 
 interface Post {
@@ -27,11 +26,29 @@ export const usePostStore = defineStore("post", {
       this.error = null;
 
       try {
-        const response = await axios.get('/api/posts/');
+        const response = await axios.get('/api/v1/posts/');
         this.posts = response.data;
       } catch (error) {
         this.error = "Failed to fetch todos";
         console.error("Error fetching posts:", error);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+
+    async toggleCompletion(id: number, completed: boolean) {
+      this.isLoading = true;
+      this.error = null;
+
+      try {
+        const response = await axios.patch(`/api/v1/posts/${id}/`, { completed });
+        const index = this.posts.findIndex(post => post.id === id);
+        if (index !== -1) {
+          this.posts[index] = response.data;
+        }
+      } catch (error) {
+        this.error = "Failed to update todo status";
+        console.error("Error updating post completion:", error);
       } finally {
         this.isLoading = false;
       }
@@ -42,7 +59,7 @@ export const usePostStore = defineStore("post", {
       this.error = null;
 
       try {
-        const response = await axios.post('/api/posts/', { content });
+        const response = await axios.post('/api/v1/posts/', { content });
         this.posts.push(response.data);
       } catch (error) {
         this.error = "Failed to add todo";
@@ -52,12 +69,13 @@ export const usePostStore = defineStore("post", {
       }
     },
 
+
     async removePost(id: number) {
       this.isLoading = true;
       this.error = null;
 
       try {
-        await axios.delete(`/api/posts/${id}/`);
+        await axios.delete(`/api/v1/posts/${id}/`);
         this.posts = this.posts.filter(post => post.id !== id);
       } catch (error) {
         this.error = "Failed to delete todo";

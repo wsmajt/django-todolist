@@ -1,33 +1,34 @@
 ﻿<template>
-  <div class="flex justify-center items-center min-h-screen bg-gray-100">
-    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-      <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Login</h2>
+  <div class="flex justify-center items-center min-h-screen bg-gray-900">
+    <div class="bg-gray-800 p-8 rounded-lg border border-gray-700 shadow-lg w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-8 text-center text-indigo-400">Login</h2>
       <form @submit.prevent="submitForm">
         <!-- Email field -->
-        <div class="mb-4">
-          <label class="block text-gray-700 mb-2">Email</label>
+        <div class="mb-6">
+          <label class="block text-gray-300 mb-2 font-medium">Email</label>
           <input
             type="email"
             v-model="email"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500 text-gray-200 placeholder-gray-500 transition-all"
             required
           />
         </div>
 
         <!-- Password field -->
-        <div class="mb-6">
-          <label class="block text-gray-700 mb-2">Password</label>
-          <div class="flex border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-500">
+        <div class="mb-8">
+          <label class="block text-gray-300 mb-2 font-medium">Password</label>
+          <div class="flex bg-gray-800 border border-gray-700 rounded-lg overflow-hidden focus-within:ring-1 focus-within:ring-indigo-500 transition-all duration-200">
             <input
               :type="showPassword ? 'text' : 'password'"
               v-model="password"
-              class="flex-grow px-4 py-2 border-0 focus:outline-none focus:ring-0"
+              class="flex-grow px-4 py-3 bg-gray-800 border-0 text-gray-200 placeholder-gray-500 focus:outline-none"
               required
             />
             <button
               type="button"
               @click="togglePasswordVisibility"
-              class="px-3 flex items-center justify-center text-gray-500 hover:text-gray-700 focus:outline-none"
+              class="px-4 text-gray-400 hover:text-indigo-400 transition-colors focus:outline-none"
+              aria-label="Toggle password visibility"
             >
               <svg v-if="showPassword" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clip-rule="evenodd" />
@@ -42,7 +43,7 @@
         </div>
 
         <!-- Error Messages -->
-        <div v-if="errors.length" class="mb-4 p-4 bg-red-50 text-red-600 rounded-lg">
+        <div v-if="errors.length" class="mb-6 p-4 bg-red-900/30 text-red-400 rounded-lg border border-red-800/50">
           <ul class="list-disc list-inside">
             <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
           </ul>
@@ -50,16 +51,16 @@
 
         <button
           type="submit"
-          class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+          class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors duration-200 font-medium"
           :disabled="loading"
         >
           <span v-if="!loading">Login</span>
           <span v-else>Processing...</span>
         </button>
 
-        <p class="mt-4 text-center text-gray-600">
+        <p class="mt-6 text-center text-gray-400">
           Don't have an account?
-          <router-link to="/register" class="text-blue-500 hover:underline">Register here</router-link>
+          <router-link to="/register" class="text-indigo-400 hover:text-indigo-300 transition-colors">Register here</router-link>
         </p>
       </form>
     </div>

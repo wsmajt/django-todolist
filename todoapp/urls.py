@@ -16,11 +16,11 @@ Including another URLconf
 """
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from sim.views import PostViewSet
+from todoapp.views import PostViewSet
 
 router = DefaultRouter()
 router.register(r'posts', PostViewSet, basename='post')
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('api/v1/', include(router.urls)),
 ]
