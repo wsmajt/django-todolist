@@ -1,4 +1,4 @@
-# Django Todo App
+# django-todolist
 
 ![App Screenshot](https://github.com/user-attachments/assets/389d9ba3-522a-432b-bf1e-e4da5ad43658)
 
